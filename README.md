@@ -487,10 +487,7 @@ Example: Select all fields from the pet table
 ```
 SELECT * FROM pet;
 ```
-Select and Limit the output
-```
-SELECT * FROM pet LIMIT 5;
-```
+
 Select specific Columns
 ```
 SELECT name, species FROM PET;
@@ -563,6 +560,10 @@ SELECT * FROM pet ORDER BY RAND();
 ```
 
 ## 4.4 Limiting Results with LIMIT
+You may want to view only a specific number of items. In that case we add a limit to enforce this.
+```
+SELECT * FROM pet LIMIT 5;
+```
 
 ## 4.5 Retrieve Distinct data
 We may want to select unique entries. eg. Lets select the owners of the pets, ignoring the duplicates if any.
@@ -690,16 +691,16 @@ select * from pet where sex="M";
 #To execute the file/commands:
 
 #Option 1:
-> sudo mysql < sql-cmmands.sql
+sudo mysql < sql-cmmands.sql
 
 #option 2: Add the required credentials
-> mysql -h host -u user -p < sql-commands.sql
+mysql -h host -u user -p < sql-commands.sql
 
 #option 3: Add required credentials
-> mysql -u user -p < sql-commands.sql
+mysql -u user -p < sql-commands.sql
 
 #option 3: In windows, you may get errors: use the following
-> mysql -e "source batch-file"
+mysql -e "source batch-file"
 
 ```
 
@@ -763,6 +764,160 @@ TRUNCATE TABLE table_name;
 ```
 
 # 6. SQL JOINS
+A JOIN in SQL is used to combine rows from two or more tables based on a related column between them. Joins help retrieve data from multiple tables in a single query by defining how rows in one table match rows in another.
+Types of Joins:
+1. INNER JOIN
+2. LEFT JOIN (LEFT OUTER JOIN)
+3. RIGHT JOIN (RIGHT OUTER JOIN)
+4. FULL JOIN (FULL OUTER JOIN)
+5. CROSS JOIN
+6. SELF JOIN
+
+To demonstrate SQL Joins, we will create some tables: customers and orders table.
+
+Customers table:
+```
+CREATE TABLE customers (
+    customer_id INT PRIMARY KEY,
+    customer_name VARCHAR(50),
+    contact_number VARCHAR(15)
+);
+
+INSERT INTO customers (customer_id, customer_name, contact_number) VALUES
+(1, 'John Doe', '555-1234'),
+(2, 'Jane Smith', '555-5678'),
+(3, 'David Johnson', '555-9876'),
+(4, 'Emily Davis', '555-4321');
+```
+Orders table:
+```
+CREATE TABLE orders (
+    order_id INT PRIMARY KEY,
+    order_date DATE,
+    customer_id INT,
+    amount DECIMAL(10, 2),
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+);
+
+INSERT INTO orders (order_id, order_date, customer_id, amount) VALUES
+(101, '2023-08-01', 1, 250.75),
+(102, '2023-08-15', 2, 180.50),
+(103, '2023-08-20', 1, 320.00),
+(104, '2023-09-01', 3, 150.00);
+```
+
+### 1. INNER JOIN:
+
+An INNER JOIN returns only the rows that have matching values in both tables. If there's no match, the row is omitted from the result set.
+Usage:
+```
+SELECT columns
+FROM table1
+INNER JOIN table2 ON table1.column = table2.column;
+```
+Example:
+```
+SELECT customers.customer_name, orders.order_date, orders.amount
+FROM customers
+INNER JOIN orders ON customers.customer_id = orders.customer_id;
+```
+This query will return the names of customers along with their order dates and amounts, where there is a matching customer_id in both the customers and orders tables.
+
+### 2. LEFT JOIN (LEFT OUTER JOIN)
+A LEFT JOIN returns all rows from the left table (customers), along with the matching rows from the right table (orders). 
+
+Usage:
+```
+SELECT columns
+FROM table1
+LEFT JOIN table2 ON table1.column = table2.column;
+```
+Example:
+```
+SELECT customers.customer_name, orders.order_date, orders.amount
+FROM customers
+LEFT JOIN orders ON customers.customer_id = orders.customer_id;
+```
+
+This query returns all customers, including those who do not have any orders (those rows will have NULL for the order_date and amount).
+
+### 3. RIGHT JOIN (RIGHT OUTER JOIN)
+A RIGHT JOIN is the opposite of a LEFT JOIN. It returns all rows from the right table (orders) and the matching rows from the left table (customers). If there is no match, the result is NULL from the left table.
+
+Usage:
+```
+SELECT columns
+FROM table1
+RIGHT JOIN table2 ON table1.column = table2.column;
+```
+
+Example:
+```
+SELECT customers.customer_name, orders.order_date, orders.amount
+FROM customers
+RIGHT JOIN orders ON customers.customer_id = orders.customer_id;
+```
+### 4. FULL JOIN (FULL OUTER JOIN)
+A FULL JOIN returns all rows when there is a match in either table. If there is no match, the result is NULL from the non-matching side. MySQL doesn't support FULL JOIN directly, so we can achieve this using a UNION of LEFT JOIN and RIGHT JOIN.
+
+
+Usage:
+```
+SELECT columns
+FROM table1
+LEFT JOIN table2 ON table1.column = table2.column
+UNION
+SELECT columns
+FROM table1
+RIGHT JOIN table2 ON table1.column = table2.column;
+```
+Example:
+```
+SELECT customers.customer_name, orders.order_date, orders.amount
+FROM customers
+LEFT JOIN orders ON customers.customer_id = orders.customer_id
+UNION
+SELECT customers.customer_name, orders.order_date, orders.amount
+FROM customers
+RIGHT JOIN orders ON customers.customer_id = orders.customer_id;
+```
+
+This query will return all customers and all orders, including those customers who don’t have orders and those orders without a matching customer.
+
+
+### 5. CROSS JOIN
+A CROSS JOIN returns the Cartesian product of the two tables. Every row from the first table is paired with every row from the second table.
+
+Usage:
+```
+SELECT columns
+FROM table1
+CROSS JOIN table2;
+```
+
+Example:
+```
+SELECT customers.customer_name, orders.order_date
+FROM customers
+CROSS JOIN orders;
+```
+
+### 6. SELF JOIN
+A SELF JOIN is a join of a table with itself. This can be useful when you need to compare rows within the same table.
+
+Usage:
+```
+SELECT A.column, B.column
+FROM table A
+JOIN table B ON A.column = B.column;
+```
+Example:
+```
+SELECT A.customer_name AS Customer1, B.customer_name AS Customer2
+FROM customers A
+JOIN customers B ON A.contact_number = B.contact_number;
+```
+
 # 7. Exporting Data from a table
 Exporting data from MySQL allows you to save the data from a database table into external files like CSV, SQL dumps, or other formats. This is useful for backups, sharing data, or migrating to other systems.
 1. Using SELECT INTO OUTFILE:
