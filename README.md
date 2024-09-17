@@ -84,31 +84,35 @@ Constraints are rules applied to table columns to ensure data integrity. Example
 
 ## 2.3 How to access MySQL database
 #### 2.3.1 Connecting to the server
-The access to a MySQL database depends to the deployment or the location of the database. To keep it simple:- see the following.
+The access to a MySQL database depends on the deployment method or the location of the database. To keep it simple:- see the following.
+
 To connect to the server, run the command:
 
 ```
-> mysql -h host -u user -p   
+mysql -h host -u user -p   
 #assumes that the database is hosted on a different server. Host is the IP or hostname of the hosting server.
 OR
-> mysql -u user -p
+mysql -u user -p
 #Replace the user with the name of the user who has the database access.
 
 #Other alternatives in Linux. Login automatically using the default username and password.
-> sudo mysql --defaults-file=/etc/mysql/debian.cnf
+sudo mysql --defaults-file=/etc/mysql/debian.cnf
 
 OR
-> sudo -i
-> mysql
+sudo -i
+mysql
+
+OR
+sudo mysql
 
 ```
 
 #### 2.3.2 To Disconnect from MySQL server
 To disconnect from MySQL server, run the following commands
 ```
-> \q         
+\q         
 OR
-> QUIT   #then press enter.
+QUIT
 ```
 
 
@@ -117,20 +121,22 @@ OR
 To get a list of options provided by mysql. MySQL has to be installed for the following command to run.
 
 ```
-> mysql --help
+mysql --help
 ```
 
 ### GENERAL COMMANDS
 ```
 #return version and current date
-> SELECT VERSION(), CURRENT_DATE; 
+SELECT VERSION(), CURRENT_DATE;
+
 #Returns current date and time
-> SELECT NOW();
+SELECT NOW();
 
 #Use MySQL as calculator
-> SELECT 10*4;
+SELECT 10*4;
+
 #Select current logged user
-> SELECT USER()
+SELECT USER()
 ```
 
 
@@ -156,6 +162,10 @@ USE databaseone;
 CREATE DATABASE db-name;
 USE db-name;
 ```
+- Delete a database
+```
+DROP DATABASE database_name;
+```
 
 ## 3.2 CREATE A DATABASE USER
 To interact with a database, you need a user. This could be a different user other than the default. A default user is created on MySQL installation. Its highly recommended to create a different user with specific privileges other than using the root user who has the right to manage all databases.
@@ -167,6 +177,22 @@ Explanation: Replace myuser and mypassword with your preffered details.
 - localhost means that the user can only access the database from the same machine. To allow remote access, use the following:
 ```
 CREATE USER 'myuser'@'%' IDENTIFIED BY 'mypassword';
+```
+
+If you had a local account that you want to convert to be able to access the database remotly:
+```
+#RENAME USER command to update the host part of the user account:
+RENAME USER 'myuser'@'localhost' TO 'myuser'@'%';
+
+#modify privileges on some database
+GRANT ALL PRIVILEGES ON database_name.* TO 'myuser'@'%';
+
+OR
+#modify privileges on all databases.
+GRANT ALL PRIVILEGES ON *.* TO 'myuser'@'%';
+
+#save/refresh changes.
+FLUSH PRIVILEGES;
 ```
 
 ## 3.2.1 Granting Privileges to a user
@@ -196,7 +222,7 @@ Below is a list of specific privileges that can be granted to MySQL users:
 GRANT ALL PRIVILEGES ON mydatabase.* TO 'myuser'@'localhost'; 
 ```
 
-- Give this user privilages on the database created
+- Give this user privileges on the database created
 - The .* part refers to all the tables within that database.
 
 - To give a user access to a specific table, do this:
@@ -373,16 +399,16 @@ in mysql''
 1. Step 1
 #In LINUX
 - Open the MySQL configuration file (/etc/mysql/my.cnf or /etc/my.cnf) in a text editor
-> sudo nano /etc/mysql/my.cnf
+sudo nano /etc/mysql/my.cnf
 - Add the following line under the [mysqld] section:
-> local_infile=1
+local_infile=1
 and if the section [mysql] does not exist, add it and add the line given. 
 ie:
 [mysql]
 local_infile=1
 secure_file_priv=''
 - Then Restart
-> sudo systemctl restart mysql
+sudo systemctl restart mysql
 
 #Windows
 - Open the MySQL configuration file (my.ini), typically located in C:\ProgramData\MySQL\MySQL Server X.X\my.ini.
@@ -392,14 +418,60 @@ local_infile=1
 2. Step 2
 Enable on the MySQL Client
 - When connecting to MySQL, add the --local-infile option to enable LOAD DATA LOCAL INFILE for the client.
-> mysql --local-infile -u username -p
+mysql --local-infile -u username -p
 - If Using a MySQL Client (e.g., MySQL Workbench):
 **Check the client settings and enable the local_infile flag.**
 - You can verify if local_infile is enabled using the following query:
-> SHOW VARIABLES LIKE 'local_infile';
+SHOW VARIABLES LIKE 'local_infile';
 The value should be ON.
 ```
 
+## 3.4.1 Drop a Column
+To drop (remove) a column from a table, use the ALTER TABLE statement with the DROP COLUMN clause.
+Usage:
+```
+ALTER TABLE table_name DROP COLUMN column_name;
+```
+Example:
+```
+ALTER TABLE pet DROP COLUMN death;
+```
+
+## 3.4.2 Add a Column
+To add a new column to a table, use the ALTER TABLE statement with the ADD COLUMN clause.
+
+Usage:
+```
+ALTER TABLE table_name ADD COLUMN column_name datatype [constraints];
+```
+Example:
+```
+ALTER TABLE pet ADD COLUMN color VARCHAR(10);
+```
+
+## 3.4.3 Update the name of a column
+To modify the name of an existing column in MySQL, you can use the ALTER TABLE statement with the CHANGE or RENAME COLUMN clause.
+
+Use ALTER TABLE ... CHANGE
+Usage:
+```
+ALTER TABLE table_name CHANGE old_column_name new_column_name datatype;
+```
+Example:
+```
+ALTER TABLE pet CHANGE sex gender VARCHAR(5);
+```
+
+OR using ALTER TABLE ... RENAME COLUMN in MySQL 8.0+
+
+Usage:
+```
+ALTER TABLE table_name RENAME COLUMN old_column_name TO new_column_name;
+```
+Example:
+```
+ALTER TABLE customers RENAME COLUMN contact_number TO phone_number;
+```
 
 
 ## 3.5 Primary Keys and Indexes
@@ -993,5 +1065,9 @@ Steps:
 - Click on the "Export" tab.
 - Choose the format (CSV, SQL, Excel, etc.).
 - Click "Go" to download the file.
+
+
+# 8. Final Exercise
+
 
 
