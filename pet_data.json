@@ -1,0 +1,67 @@
+[
+    {
+        "name": "Fluffy",
+        "owner": "John",
+        "species": "Dog"
+    },
+    {
+        "name": "Bella",
+        "owner": "ManDan",
+        "species": "Cat"
+    },
+    {
+        "name": "Max",
+        "owner": "David",
+        "species": "Dog"
+    },
+    {
+        "name": "Charlie",
+        "owner": "Emily",
+        "species": "Parrot"
+    },
+    {
+        "name": "killed",
+        "owner": "James",
+        "species": "Rabbit"
+    },
+    {
+        "name": "Daisy",
+        "owner": "Michael",
+        "species": "Dog"
+    },
+    {
+        "name": "killed",
+        "owner": "James",
+        "species": "Cat"
+    },
+    {
+        "name": "Coco",
+        "owner": "Rachel",
+        "species": "Bird"
+    },
+    {
+        "name": "killed",
+        "owner": "James",
+        "species": "Hamster"
+    },
+    {
+        "name": "Lucy",
+        "owner": "Olivia",
+        "species": "Dog"
+    },
+    {
+        "name": "Max",
+        "owner": "Sophia",
+        "species": "Wolf"
+    },
+    {
+        "name": "Max",
+        "owner": "Sophia",
+        "species": "Wolf"
+    },
+    {
+        "name": "Max",
+        "owner": "Sophia",
+        "species": "Wolf"
+    }
+]

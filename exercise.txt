@@ -1,0 +1,131 @@
+Exercise: Comprehensive SQL Challenge
+Context:
+You are working with a database for an e-commerce application. The database consists of three tables:
+
+customers – stores information about customers.
+orders – stores details about orders placed by customers.
+products – stores details about the products sold.
+Your task is to write SQL queries to solve various problems using these tables.
+
+Table Schemas and Sample Data
+customers table:
+
+CREATE TABLE customers (
+    customer_id INT PRIMARY KEY,
+    customer_name VARCHAR(50),
+    city VARCHAR(50),
+    contact_number VARCHAR(15)
+);
+
+INSERT INTO customers (customer_id, customer_name, city, contact_number) VALUES
+(1, 'John Doe', 'New York', '555-1234'),
+(2, 'Jane Smith', 'Los Angeles', '555-5678'),
+(3, 'David Johnson', 'Chicago', '555-9876'),
+(4, 'Emily Davis', 'Houston', '555-4321');
+
+
+
+orders table
+CREATE TABLE orders (
+    order_id INT PRIMARY KEY,
+    order_date DATE,
+    customer_id INT,
+    product_id INT,
+    quantity INT,
+    amount DECIMAL(10, 2),
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+);
+
+INSERT INTO orders (order_id, order_date, customer_id, product_id, quantity, amount) VALUES
+(101, '2023-08-01', 1, 1, 2, 500.00),
+(102, '2023-08-03', 2, 3, 1, 1200.00),
+(103, '2023-08-10', 1, 2, 1, 150.00),
+(104, '2023-08-15', 3, 1, 5, 2500.00),
+(105, '2023-09-01', 4, 3, 3, 3600.00);
+
+
+
+products table:
+CREATE TABLE products (
+    product_id INT PRIMARY KEY,
+    product_name VARCHAR(100),
+    price DECIMAL(10, 2)
+);
+
+INSERT INTO products (product_id, product_name, price) VALUES
+(1, 'Laptop', 250.00),
+(2, 'Keyboard', 150.00),
+(3, 'Smartphone', 1200.00);
+
+
+
+Questions:
+1. Retrieve Data
+Q1.1: Write a query to retrieve all customer details from the customers table.
+
+Q1.2: Retrieve the order date and product name for each order.
+
+2. Filtering and Sorting
+Q2.1: Find all customers who live in New York.
+
+Q2.2: Retrieve the orders where the amount is greater than $1000 and sort them by the amount in descending order.
+
+3. Using Joins
+Q3.1: Write a query to display each customer’s name and the total amount they have spent on orders.
+
+Q3.2: Write a query to retrieve the customer name, product name, and order date for all orders. Use a JOIN to connect the customers, orders, and products tables.
+
+4. Grouping and Aggregation
+Q4.1: Find the total revenue generated (sum of all order amounts).
+
+Q4.2: Write a query to find the total number of orders placed by each customer. Include customers who have not placed any orders.
+
+5. Subqueries
+Q5.1: Write a query to retrieve the customer(s) who placed the highest total amount in orders.
+
+6. Advanced Joins
+Q6.1: Display all products and the total quantity sold for each product. Use a LEFT JOIN to include products that have not been sold yet.
+
+7. Self-Join
+Q7.1: Find all pairs of customers living in the same city. Use a SELF JOIN to find matches within the customers table.
+
+8. Indexing
+Q8.1: Create an index on the order_date column in the orders table to optimize queries that frequently filter by date.
+ CREATE INDEX idx_order_date ON orders(order_date);
+
+9. Updating Data
+Q9.1: Update the price of the product Smartphone to $1300.
+
+10. Deleting Data
+Q10.1: Delete the order with order_id = 105.
+
+
+
+
+Expected Outcomes for Key Queries:
+Q1.2 (Orders and Product Names):
+
+SELECT orders.order_date, products.product_name
+FROM orders
+JOIN products ON orders.product_id = products.product_id;
+
+Q3.1 (Customer’s Total Spending):
+SELECT customers.customer_name, SUM(orders.amount) AS total_spent
+FROM customers
+JOIN orders ON customers.customer_id = orders.customer_id
+GROUP BY customers.customer_name;
+
+Q4.2 (Number of Orders per Customer, including customers with no orders):
+SELECT customers.customer_name, COUNT(orders.order_id) AS total_orders
+FROM customers
+LEFT JOIN orders ON customers.customer_id = orders.customer_id
+GROUP BY customers.customer_name;
+
+
+Q6.1 (Total Quantity Sold for Each Product):
+SELECT products.product_name, SUM(orders.quantity) AS total_sold
+FROM products
+LEFT JOIN orders ON products.product_id = orders.product_id
+GROUP BY products.product_name;
+
+

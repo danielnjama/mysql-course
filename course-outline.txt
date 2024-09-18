@@ -1,0 +1,45 @@
+MySQL Database Querying and Management
+1. Introduction to Database
+	- Give introduction
+	- Terminologies used
+2. Getting Started with MySQL
+	- Installing on windows
+	- installing on Linux
+	- Accessing Mysql
+	- How to disconnect
+	- Getting started
+3. Creating and managing databases.
+	- create a database;
+	- create a database user
+	- Granting Privileges to a user
+	- Revoking Privileges
+	- Understanding Data Types
+	- Creating Tables
+	- Inserting Data into Tables
+	- Drop a Column
+	- Add a Column
+	- Update the name of a column
+	- Primary Keys and Indexes
+4. Retrieving Data from a table.
+	- Retrieve data without conditions
+	- Retrieve data with conditions
+	- Using WHERE Clause
+	- Logical Operators (AND, OR, NOT)
+	- Sorting Results with ORDER BY
+	- Limiting Results with LIMIT and Distinct data
+	- Date Calculations
+	- Working with NULL Values
+	- Pattern Matching
+	- Use REGEXP to match patterns
+	- Counting Rows
+	- Using MySQL in Batch Mode
+5. Modifying Data in SQL
+	- Modifying Data in SQL(Insert, Update, Delete, Replace)
+
+6. SQL JOINS
+	- INNER JOIN
+	- LEFT JOIN (LEFT OUTER JOIN)
+	- RIGHT JOIN (RIGHT OUTER JOIN)
+7. Exporting Data in MySQL
+	- Exporting Data in MySQL
+8. Final Exercise. 	
