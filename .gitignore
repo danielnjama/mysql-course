@@ -1,6 +1,16 @@
-    # Ignore everything
-    *
+*.csv
+*.pdf
+*.json
+*.txt
+*.sql
 
-    # Allow only .md files
-    !*.md
-    !course-outline.txt
+
+
+
+
+# # Ignore everything
+# *
+
+# # Allow only .md files
+# !*.md
+# !course-outline.txt
