@@ -1,4 +1,5 @@
 # MySQL Database Querying and Management
+<a name="top"></a>
 
 ## Table of Contents
 1. [Introduction to Database](#1-introduction-to-database)
@@ -92,7 +93,7 @@ Constraints are rules applied to table columns to ensure data integrity. Example
 - CHECK: Ensures that all values in a column meet a specific condition.
 ```
 
-
+[Back to Top](#top)
 # 2. Getting Started with MySQL
 ## 2.1 Installation in Windows
 ## 2.2 Installation in Linux machine.
@@ -160,7 +161,7 @@ SELECT USER()
 Statements in MySQL are not case sensitive. - Use any font as preferred.
 ```
 
-
+[Back to Top](#top)
 # 3. Creating and Managing Databases
 
 ## 3.1 Creating Databases
@@ -560,6 +561,8 @@ Example:
 ```
 DROP INDEX idx_species ON pet;
 ```
+
+[Back to Top](#top)
 # 4. Retrieving Data from a table.
 To retrieve data, we use a command. This command can just be a simple command without any condition. To fetch specific data, conditions are added.
 
@@ -803,7 +806,7 @@ source pet-commands.sql
 source /path/to/file/pet-commands.sql 
 ```
 
-
+[Back to Top](#top)
 # 5. Modifying Data in SQL
 In SQL, modifying data is done using INSERT, UPDATE, and DELETE statements. These commands allow you to add, change, or remove data from your database.
 1. **INSERT – Adding Data to a Table** : We have already see how we can insert data into our table. Refer to the previous section.
@@ -849,7 +852,7 @@ Usage:
 ```
 TRUNCATE TABLE table_name;
 ```
-
+[Back to Top](#top)
 # 6. SQL JOINS
 A JOIN in SQL is used to combine rows from two or more tables based on a related column between them. Joins help retrieve data from multiple tables in a single query by defining how rows in one table match rows in another.
 Types of Joins:
@@ -893,7 +896,7 @@ INSERT INTO orders (order_id, order_date, customer_id, amount) VALUES
 (104, '2023-09-01', 3, 150.00);
 ```
 
-### 1. INNER JOIN:
+### 6.1. INNER JOIN:
 
 An INNER JOIN returns only the rows that have matching values in both tables. If there's no match, the row is omitted from the result set.
 Usage:
@@ -910,7 +913,7 @@ INNER JOIN orders ON customers.customer_id = orders.customer_id;
 ```
 This query will return the names of customers along with their order dates and amounts, where there is a matching customer_id in both the customers and orders tables.
 
-### 2. LEFT JOIN (LEFT OUTER JOIN)
+### 6.2. LEFT JOIN (LEFT OUTER JOIN)
 A LEFT JOIN returns all rows from the left table (customers), along with the matching rows from the right table (orders). 
 
 Usage:
@@ -928,7 +931,7 @@ LEFT JOIN orders ON customers.customer_id = orders.customer_id;
 
 This query returns all customers, including those who do not have any orders (those rows will have NULL for the order_date and amount).
 
-### 3. RIGHT JOIN (RIGHT OUTER JOIN)
+### 6.3. RIGHT JOIN (RIGHT OUTER JOIN)
 A RIGHT JOIN is the opposite of a LEFT JOIN. It returns all rows from the right table (orders) and the matching rows from the left table (customers). If there is no match, the result is NULL from the left table.
 
 Usage:
@@ -944,7 +947,7 @@ SELECT customers.customer_name, orders.order_date, orders.amount
 FROM customers
 RIGHT JOIN orders ON customers.customer_id = orders.customer_id;
 ```
-### 4. FULL JOIN (FULL OUTER JOIN)
+### 6.4. FULL JOIN (FULL OUTER JOIN)
 A FULL JOIN returns all rows when there is a match in either table. If there is no match, the result is NULL from the non-matching side. MySQL doesn't support FULL JOIN directly, so we can achieve this using a UNION of LEFT JOIN and RIGHT JOIN.
 
 
@@ -972,7 +975,7 @@ RIGHT JOIN orders ON customers.customer_id = orders.customer_id;
 This query will return all customers and all orders, including those customers who don’t have orders and those orders without a matching customer.
 
 
-### 5. CROSS JOIN
+### 6.5. CROSS JOIN
 A CROSS JOIN returns the Cartesian product of the two tables. Every row from the first table is paired with every row from the second table.
 
 Usage:
@@ -989,7 +992,7 @@ FROM customers
 CROSS JOIN orders;
 ```
 
-### 6. SELF JOIN
+### 6.6. SELF JOIN
 A SELF JOIN is a join of a table with itself. This can be useful when you need to compare rows within the same table.
 
 Usage:
@@ -1005,7 +1008,7 @@ FROM customers A
 JOIN customers B ON A.contact_number = B.contact_number;
 ```
 
-# 7. Exporting Data in MySQL
+# 6.7. Exporting Data in MySQL
 Exporting data from MySQL allows you to save the data from a database table into external files like CSV, SQL dumps, or other formats. This is useful for backups, sharing data, or migrating to other systems.
 1. Using SELECT INTO OUTFILE:
 SELECT INTO OUTFILE is a built-in SQL command that exports data directly to a file in a specified format. The file is saved on the server where MySQL is running.
@@ -1081,7 +1084,7 @@ Steps:
 - Choose the format (CSV, SQL, Excel, etc.).
 - Click "Go" to download the file.
 
-
+[Back to Top](#top)
 # 8. Final Exercise
 
 
