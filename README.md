@@ -1,4 +1,14 @@
-## MySQL Database Querying and Management
+# MySQL Database Querying and Management
+
+## Table of Contents
+1. [Introduction to Database](#1-introduction-to-database)
+2. [Getting Started with MySQL](#2-getting-started-with-mysql)
+3. [Creating and managing databases.](#3-creating-and-managing-databases)
+4. [Retrieving Data from a table.](#4-retrieving-data-from-a-table)
+5. [Modifying Data in SQL](#5-modifying-data-in-sql)
+6. [SQL JOINS](#6-sql-joins)
+7. [Exporting Data in MySQL](#7-exporting-data-in-mysql)
+8. [Final Exercise.](#8-final-exercise)
 
 # 1. Introduction to Database
 Welcome to the MySQL Course! MySQL is a powerful, open-source relational database management system (RDBMS) that allows you to store, manage, and retrieve data efficiently. Whether you're developing web applications, managing large datasets, or working on backend systems, MySQL provides the tools to structure and organize data with flexibility and precision.
