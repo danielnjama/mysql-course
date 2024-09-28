@@ -223,7 +223,7 @@ Below is a list of specific privileges that can be granted to MySQL users:
 5. **DELETE** : Allows users to delete data from tables.
 6. **CREATE** : Allows users to create new databases or tables
 7. **DROP** : Allows users to delete databases or tables.
-8. ***INDEX** : Allows users to create and remove indexes on tables.
+8. **INDEX** : Allows users to create and remove indexes on tables.
 9. **ALTER** : Allows users to modify the structure of existing tables (e.g., adding/removing columns).
 10. **CREATE VIEW** : Allows users to create views (virtual tables based on queries).
 11. **SHOW VIEW** : Allows users to view the definition of views.
@@ -593,11 +593,11 @@ FROM which_table
 In this case, identify the unique column that will be used and combine it with any of these these operators =, <=, >=
 
 ```
-> SELECT * FROM pet WHERE name = 'Luna';
+SELECT * FROM pet WHERE name = 'Luna';
 
 
 #Get pets on 1998-1-1 and later.
-> SELECT * FROM pet WHERE birth >= '1998-1-1';
+SELECT * FROM pet WHERE birth >= '1998-1-1';
 
 ```
 
@@ -606,16 +606,16 @@ AND :: Returns data that meets both conditions.
 OR :: Returns data that meets any or both of the conditions specified
 ```
 #Combine conditions using AND Operator.
-> SELECT * FROM pet WHERE species = 'dog' AND sex = 'f';
+SELECT * FROM pet WHERE species = 'dog' AND sex = 'f';
 #Combine conditions using OR Operator.
-> SELECT * FROM pet WHERE species = 'snake' OR species = 'bird';
+SELECT * FROM pet WHERE species = 'snake' OR species = 'bird';
 
 #Combined operator AND and OR operators
-> SELECT * FROM pet WHERE (species = 'cat' AND sex = 'm')
+SELECT * FROM pet WHERE (species = 'cat' AND sex = 'm')
 OR (species = 'dog' AND sex = 'f');
 
 #Use NOT
-> SELECT * FROM owner not WHERE owner="James";
+SELECT * FROM owner not WHERE owner="James";
 #selects all apart from those whose owner is James. 
 ```
 ## 4.3 Sorting Results with ORDER BY
