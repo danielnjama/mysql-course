@@ -16,77 +16,63 @@ Welcome to the MySQL Course! MySQL is a powerful, open-source relational databas
 
 In this course, you’ll learn why MySQL is one of the most widely used databases in the world—it's scalable, secure, and easy to use. MySQL excels in situations where data consistency, performance, and transactional integrity are critical, such as e-commerce platforms, content management systems, and financial applications.
 
+### MySQL and NoSQL
+- MySQL is a relational database that organizes data in tables, using predefined schemas. It’s great for applications that need structured data, like financial systems or inventory tracking.
+Example: A MySQL database would store customer data in a structured table format with rows and columns, defining relationships between customers and their orders.
+
+- NoSQL is a non-relational database that allows for flexible, unstructured or semi-structured data. It’s ideal for scenarios where the data structure can change frequently, such as social media or real-time analytics.
+Example: A NoSQL database, like MongoDB, might store user data as JSON documents, where each user can have different fields and structure.
+
 We’ll explore core concepts, from database design to advanced SQL queries, empowering you to build, query, and manage databases with confidence. By the end, you'll not only understand when and why to use MySQL but also how to harness its full potential in real-world scenarios.
 ## 1.1 Terminologies used
 See below a list of terminologies used in MYSQL.
 ```
-1. Database
-A database is a structured collection of data stored in a computer system. In MySQL, a database is a container for storing tables, views, triggers, procedures, and other database objects.
+1. Database - A database is a structured collection of data stored in a computer system. In MySQL, a database is a container for storing tables, views, triggers, procedures, and other database objects.
 
-2. Table
-A table is the fundamental storage structure in MySQL. It's organized in rows and columns, where each row represents a record and each column represents a field. Tables store data in a structured format.
+2. Table - A table is the fundamental storage structure in MySQL. It's organized in rows and columns, where each row represents a record and each column represents a field. Tables store data in a structured format.
 
-3. Row
-A row is a single, horizontal record in a table. Each row contains data for all the columns of the table. Rows are also referred to as records.
+3. Row - A row is a single, horizontal record in a table. Each row contains data for all the columns of the table. Rows are also referred to as records.
 
-4. Column
-A column defines a vertical field in a table. It represents the attribute of the data (like name, age, or email). Each column has a specific data type, such as INT, VARCHAR, DATE, etc.
+4. Column - A column defines a vertical field in a table. It represents the attribute of the data (like name, age, or email). Each column has a specific data type, such as INT, VARCHAR, DATE, etc.
 
-5. Primary Key
-A primary key is a unique identifier for each record in a table. It ensures that no two rows have the same value in the primary key column(s). The primary key field cannot be null.
+5. Primary Key - A primary key is a unique identifier for each record in a table. It ensures that no two rows have the same value in the primary key column(s). The primary key field cannot be null.
 
-6. Foreign Key
-A foreign key is a field (or a set of fields) in one table that uniquely identifies a row of another table. It creates a relationship between two tables and enforces referential integrity.
+6. Foreign Key - A foreign key is a field (or a set of fields) in one table that uniquely identifies a row of another table. It creates a relationship between two tables and enforces referential integrity.
 
-7. Index
-An index is a data structure used to speed up queries. By creating an index on one or more columns of a table, MySQL can retrieve rows more efficiently. However, indexes may slow down insert and update operations.
+7. Index - An index is a data structure used to speed up queries. By creating an index on one or more columns of a table, MySQL can retrieve rows more efficiently. However, indexes may slow down insert and update operations.
 
-8. Query
-A query is a request for data or information from a database. In MySQL, queries are written in SQL (Structured Query Language) to retrieve, insert, update, or delete data.
+8. Query - A query is a request for data or information from a database. In MySQL, queries are written in SQL (Structured Query Language) to retrieve, insert, update, or delete data.
 
-9. SQL (Structured Query Language)
-SQL is the standard language used to communicate with relational databases like MySQL. It consists of statements like SELECT, INSERT, UPDATE, and DELETE.
+9. SQL (Structured Query Language)- SQL is the standard language used to communicate with relational databases like MySQL. It consists of statements like SELECT, INSERT, UPDATE, and DELETE.
 
-10. Normalization
-Normalization is the process of organizing data to minimize redundancy and improve data integrity. It involves splitting large tables into smaller ones and defining relationships between them.
+10. Normalization - Normalization is the process of organizing data to minimize redundancy and improve data integrity. It involves splitting large tables into smaller ones and defining relationships between them.
 
-11. Join
-A join is a SQL operation that combines data from two or more tables based on a related column between them. Types of joins include INNER JOIN, LEFT JOIN, RIGHT JOIN, and FULL JOIN.
+11. Join - A join is a SQL operation that combines data from two or more tables based on a related column between them. Types of joins include INNER JOIN, LEFT JOIN, RIGHT JOIN, and FULL JOIN.
 
-12. View
-A view is a virtual table in MySQL, created by a query. It does not store data but allows you to see the result of a SELECT query as a table. Views can simplify complex queries and enhance security by restricting access to certain data.
+12. View - A view is a virtual table in MySQL, created by a query. It does not store data but allows you to see the result of a SELECT query as a table. Views can simplify complex queries and enhance security by restricting access to certain data.
 
-13. Stored Procedure
-A stored procedure is a reusable block of SQL code that can be executed repeatedly. It helps in automating repetitive tasks and allows you to perform complex operations in MySQL.
+13. Stored Procedure - A stored procedure is a reusable block of SQL code that can be executed repeatedly. It helps in automating repetitive tasks and allows you to perform complex operations in MySQL.
 
-14. Trigger
-A trigger is a special kind of stored procedure that automatically executes when certain events occur in a database, like inserting or deleting a row.
+14. Trigger - A trigger is a special kind of stored procedure that automatically executes when certain events occur in a database, like inserting or deleting a row.
 
-15. Transaction
-A transaction is a sequence of SQL operations that are executed as a single unit. It ensures that either all changes made in the transaction are saved (commit) or none are saved (rollback).
+15. Transaction - A transaction is a sequence of SQL operations that are executed as a single unit. It ensures that either all changes made in the transaction are saved (commit) or none are saved (rollback).
 
-16. Commit
-A commit is the SQL command used to save all the changes made during a transaction to the database. Once committed, the changes cannot be undone.
+16. Commit - A commit is the SQL command used to save all the changes made during a transaction to the database. Once committed, the changes cannot be undone.
 
-17. Rollback
-A rollback is the SQL command used to undo the changes made during a transaction, reverting the database to its previous state before the transaction started.
+17. Rollback - A rollback is the SQL command used to undo the changes made during a transaction, reverting the database to its previous state before the transaction started.
 
-18. Schema
-A schema is the overall structure of a database, including tables, views, indexes, procedures, and relationships. It represents the design and organization of data.
+18. Schema - A schema is the overall structure of a database, including tables, views, indexes, procedures, and relationships. It represents the design and organization of data.
 
-19. Data Types
-Data types define the kind of data a column can hold. Common data types in MySQL include:
+19. Data Types - Data types define the kind of data a column can hold. Common data types in MySQL include:
 
 - INT: Integer numbers.
 - VARCHAR: Variable-length strings.
 - DATE: Date values.
 - DECIMAL: Fixed-point numbers for financial calculations.
 - TEXT: Large text fields.
-20. Cursor
-A cursor is a database object used to retrieve data one row at a time. It's often used within stored procedures or functions when dealing with complex data retrieval scenarios.
+20. Cursor- A cursor is a database object used to retrieve data one row at a time. It's often used within stored procedures or functions when dealing with complex data retrieval scenarios.
 
-21. Constraints
-Constraints are rules applied to table columns to ensure data integrity. Examples include:
+21. Constraints - Constraints are rules applied to table columns to ensure data integrity. Examples include:
 
 - NOT NULL: Ensures a column cannot have null values.
 - UNIQUE: Ensures all values in a column are unique.
@@ -97,6 +83,57 @@ Constraints are rules applied to table columns to ensure data integrity. Example
 # 2. Getting Started with MySQL
 ## 2.1 Installation in Windows
 ## 2.2 Installation in Linux machine.
+Before installing MySQL on a Linux machine, you need to the following on check:
+
+1. Updated version of the Linux OS(Ubuntu, Kali Linux, Parrot OS, CentOS, RHEL, Fedora etc)
+2. Access to a terminal or command line.
+3. Sudo privileges or access to the root user.
+
+#### Installation Procedure
+Note: Some Linux Os uses apt as a package manager while others uses yum or dnf(eg CentOS, RHEL, Fedora). Use the package manager that works with your OS.
+1. Update Package Lists
+```
+sudo apt update
+```
+2. Install MySQL Server
+```
+sudo apt install mysql-server
+```
+3. Configure MySQL
+This step is to improve security of MySQL database. This is not necessary for now and can be skipped.
+```
+sudo mysql_secure_installation #If this returns an error, proceed to step 4; then back to step 3
+```
+4. Start and Enable MySQL Service
+```
+sudo systemctl start mysql  #Start mysql service
+sudo systemctl enable mysql #enable the service to start on reboot
+OR
+#If systemctl is not configured
+service mysql start  #Start mysql service
+service mysql enable #enable the service to start on reboot
+```
+
+At this stage, MySQL server has successfully been installed and ready for use. See how to access MySQL database in the section that follows.
+
+
+## 2.2.1 Installing or accessing MySQL from a Docker container
+You can also access MySQL from a docker container. For this to be a success, you first need to have docker installed. 
+
+Create a MySQL container:
+```
+docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:latest
+
+
+--name mysql-container: Names the container mysql-container.
+-e MYSQL_ROOT_PASSWORD=my-secret-pw: Sets the root password for MySQL.
+-d mysql:latest: Runs the container in detached mode (in the background) using the latest MySQL image.
+```
+
+Access MySQL database:
+```
+docker exec -it mysql-container mysql -u root -p
+``` 
 
 ## 2.3 How to access MySQL database
 #### 2.3.1 Connecting to the server
@@ -130,8 +167,6 @@ To disconnect from MySQL server, run the following commands
 OR
 QUIT
 ```
-
-
 
 ## 2.4 Getting Started
 To get a list of options provided by mysql. MySQL has to be installed for the following command to run.
@@ -298,8 +333,8 @@ This section provides a quick reference to commonly used MySQL data types. Each 
 
 ## String Data Types
 
-- **CHAR**: A fixed-length string. Used for storing text strings of a specific length. The length is specified in parentheses.
-- **VARCHAR**: A variable-length string. Used for storing text strings of varying lengths. The maximum length is specified in parentheses.
+- **CHAR**: is a fixed-length string data type. If you define CHAR(10), it will always store 10 characters, padding with spaces if necessary. If the actual length is less than the specified, spaces will be added to fill in. The length is specified in parentheses. usage:: country codes
+- **VARCHAR**: is a variable-length string data type. If you define VARCHAR(10), it will store only the actual number of characters used, up to the maximum of 10.
 - **TEXT**: A large variable-length string. Used for storing long text data. The maximum length is 65,535 characters.
 - **MEDIUMTEXT**: A medium-sized text field. Can store up to 16,777,215 characters.
 - **LONGTEXT**: A large text field. Can store up to 4,294,967,295 characters.
